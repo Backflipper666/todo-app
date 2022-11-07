@@ -1,44 +1,37 @@
-import React, { Component } from 'react';
-import './task.css';
-import { formatDistanceToNow } from 'date-fns';
+import React, { Component } from 'react'
+import './task.css'
+import { formatDistanceToNow } from 'date-fns'
 
 export default class Task extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       label: props.label,
-    };
+    }
     this.onLabelChange = (event) => {
       this.setState({
         label: event.target.value,
         description: false,
-      });
-    };
+      })
+    }
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
-  onSubmit = (event, id) => {
-    event.preventDefault();
-    this.props.onToggleEdit();
-    this.props.onEditLabel(this.state.label);
+  onSubmit(event) {
+    event.preventDefault()
+    this.props.onToggleEdit()
+    this.props.onEditLabel(this.state.label)
 
     this.setState({
       label: '',
-    });
-  };
+    })
+  }
 
   render() {
-    const {
-      label,
-      id,
-      onToggleDone,
-      onToggleEdit,
-      description,
-      onDeleted,
-      createDate,
-    } = this.props;
-    let classNames = '';
+    const { label, id, onToggleDone, onToggleEdit, description, onDeleted, createDate } = this.props
+    let classNames = ''
     if (description) {
-      classNames += ' description';
+      classNames += ' description'
     }
 
     return (
@@ -55,18 +48,13 @@ export default class Task extends Component {
               })}`}
             </span>
           </label>
-          <button className="icon icon-edit" onClick={onToggleEdit}></button>
-          <button className="icon icon-destroy" onClick={onDeleted}></button>
+          <button className="icon icon-edit" onClick={onToggleEdit} />
+          <button className="icon icon-destroy" onClick={onDeleted} />
         </div>
         <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            className="edit"
-            onChange={this.onLabelChange}
-            value={this.state.label}
-          />
+          <input type="text" className="edit" onChange={this.onLabelChange} value={this.state.label} />
         </form>
       </>
-    );
+    )
   }
 }

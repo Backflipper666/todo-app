@@ -1,20 +1,14 @@
-import React from "react";
-import "./task-list.css";
-import Task from "../task";
+import React from 'react'
 
-const TaskList = ({
-  todos,
-  onToggleDone,
-  onToggleEdit,
-  onItemAdded,
-  onDeleted,
-  onEditLabel,
-}) => {
+import './task-list.css'
+import Task from '../task'
+
+function TaskList({ todos, onToggleDone, onToggleEdit, onItemAdded, onDeleted, onEditLabel }) {
   const elements = todos.map((item) => {
-    const { id, editing, ...others } = item;
-    let classNames = "completed";
+    const { id, editing, ...others } = item
+    let classNames = 'completed'
     if (editing) {
-      classNames = "editing";
+      classNames = 'editing'
     }
     return (
       <li key={id} className={classNames}>
@@ -27,10 +21,10 @@ const TaskList = ({
           onEditLabel={(value) => onEditLabel(id, value)}
         />
       </li>
-    );
-  });
+    )
+  })
 
-  return <ul className="todo-list">{elements}</ul>;
-};
+  return <ul className="todo-list">{elements}</ul>
+}
 
-export default TaskList;
+export default TaskList

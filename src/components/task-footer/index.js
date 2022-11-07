@@ -1,2 +1,4 @@
-import Footer from "./app";
-export default Footer;
+/* import Footer from './app'
+
+export default Footer
+ */

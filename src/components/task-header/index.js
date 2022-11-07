@@ -1,2 +1,3 @@
-import TaskHeader from "./task-header";
-export default TaskHeader;
+import TaskHeader from './task-header'
+
+export default TaskHeader

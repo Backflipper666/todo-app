@@ -1,34 +1,43 @@
-import React, { Component } from 'react';
-import './new-task-form.css';
+import React, { Component } from 'react'
+import './new-task-form.css'
 
 export default class TaskEdit extends Component {
-  state = {
-    label: '',
-  };
-  ucFirst(str) {
-    if (!str) return str;
-    return str[0].toUpperCase() + str.slice(1);
+  constructor(props) {
+    super(props)
+    this.state = {
+      label: '',
+    }
+
+    this.onLabelChange = this.onLabelChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
-  onLabelChange = (event) => {
+
+  ucFirst(str) {
+    if (!str) return str
+    return str[0].toUpperCase() + str.slice(1)
+  }
+
+  onLabelChange(event) {
     this.setState({
       label: this.ucFirst(event.target.value),
-    });
-  };
+    })
+  }
 
-  onSubmit = (event) => {
-    event.preventDefault();
+  onSubmit(event) {
+    event.preventDefault()
 
-    const label = this.state.label;
-    const trimmed = label.trim();
+    const { label } = this.state
+    const trimmed = label.trim()
 
     if (trimmed.length === 0) {
-      return;
+      return
     }
-    this.props.onItemAdded(this.state.label);
+    this.props.onItemAdded(this.state.label)
     this.setState({
       label: '',
-    });
-  };
+    })
+  }
+
   render() {
     return (
       <form className="new-task-form" onSubmit={this.onSubmit}>
@@ -40,6 +49,6 @@ export default class TaskEdit extends Component {
           autoFocus
         />
       </form>
-    );
+    )
   }
 }
